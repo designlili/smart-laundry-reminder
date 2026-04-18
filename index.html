@@ -19,96 +19,128 @@
       align-items: center;
       justify-content: center;
       background:
-        radial-gradient(circle at top, #2d3a5a 0%, #161c2e 45%, #0c101a 100%);
+        radial-gradient(circle at top, #31476f 0%, #18243d 42%, #0a1120 100%);
       color: white;
       padding: 24px;
     }
 
     .app {
       width: 100%;
-      max-width: 480px;
+      max-width: 520px;
       background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 28px;
-      padding: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 30px;
+      padding: 30px;
       text-align: center;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
     }
 
     h1 {
       font-size: 2rem;
       margin-bottom: 10px;
-      color: #f4f7ff;
+      color: #f6f9ff;
     }
 
     .subtitle {
-      color: rgba(255,255,255,0.75);
-      margin-bottom: 24px;
+      color: rgba(255,255,255,0.76);
+      margin-bottom: 26px;
       line-height: 1.5;
     }
 
     .machine {
-      width: 250px;
-      height: 320px;
+      width: 270px;
+      height: 340px;
       margin: 0 auto 24px;
-      border-radius: 28px;
-      background: linear-gradient(180deg, #eef4ff 0%, #cfdcf3 100%);
+      border-radius: 30px;
+      background: linear-gradient(180deg, #eef4ff 0%, #cfdcf2 100%);
       position: relative;
       box-shadow:
-        inset 0 2px 8px rgba(255,255,255,0.5),
-        0 20px 40px rgba(0,0,0,0.25);
+        inset 0 2px 8px rgba(255,255,255,0.55),
+        0 20px 40px rgba(0,0,0,0.24);
     }
 
     .machine-top {
-      height: 70px;
-      border-radius: 28px 28px 0 0;
-      background: linear-gradient(180deg, #f7fbff 0%, #dde8f8 100%);
+      height: 76px;
+      border-radius: 30px 30px 0 0;
+      background: linear-gradient(180deg, #f8fbff 0%, #dce7f7 100%);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
       position: relative;
-      border-bottom: 1px solid rgba(0,0,0,0.06);
     }
 
     .display {
-      width: 62px;
-      height: 20px;
-      border-radius: 8px;
-      background: #1d2b49;
+      width: 76px;
+      height: 24px;
+      border-radius: 9px;
+      background: linear-gradient(180deg, #0f213d 0%, #1f3d68 100%);
       position: absolute;
-      top: 22px;
+      top: 24px;
       left: 24px;
-      box-shadow: inset 0 0 12px rgba(0, 255, 255, 0.25);
+      box-shadow:
+        inset 0 0 10px rgba(125, 255, 255, 0.18),
+        0 0 12px rgba(80, 180, 255, 0.12);
+    }
+
+    .display::after {
+      content: "ON";
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #95f0ff;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      font-weight: bold;
     }
 
     .knob {
-      width: 42px;
-      height: 42px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, #ffffff 0%, #c8d3e7 60%, #aeb9cc 100%);
+      background: radial-gradient(circle at 35% 35%, #ffffff 0%, #d2dceb 60%, #aab6c9 100%);
       position: absolute;
-      right: 24px;
       top: 14px;
-      border: 2px solid #b4bfd2;
+      right: 24px;
+      border: 2px solid #b6c1d3;
       cursor: pointer;
-      transition: transform 0.2s ease;
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+
+    .knob:hover {
+      box-shadow: 0 0 18px rgba(100, 190, 255, 0.28);
     }
 
     .knob:active {
-      transform: scale(0.95);
+      transform: scale(0.96);
+    }
+
+    .knob::after {
+      content: "";
+      width: 3px;
+      height: 14px;
+      border-radius: 2px;
+      background: #70839b;
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     .door {
-      width: 170px;
-      height: 170px;
+      width: 185px;
+      height: 185px;
       border-radius: 50%;
       position: absolute;
       left: 50%;
-      top: 125px;
+      top: 126px;
       transform: translateX(-50%);
-      background: radial-gradient(circle at center, #16243f 0%, #0f1a30 100%);
-      border: 10px solid #dbe4f2;
+      background: radial-gradient(circle at center, #1b2945 0%, #0c1830 100%);
+      border: 11px solid #dde6f3;
       box-shadow:
-        inset 0 0 25px rgba(255,255,255,0.08),
-        0 8px 20px rgba(0,0,0,0.18);
+        inset 0 0 24px rgba(255,255,255,0.08),
+        0 10px 22px rgba(0,0,0,0.2);
       overflow: hidden;
     }
 
@@ -117,29 +149,29 @@
       inset: 10px;
       border-radius: 50%;
       background:
-        radial-gradient(circle at 30% 25%, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.05) 28%, transparent 30%),
-        radial-gradient(circle at center, #20355d 0%, #132442 100%);
+        radial-gradient(circle at 28% 24%, rgba(255,255,255,0.32) 0%, rgba(255,255,255,0.05) 26%, transparent 28%),
+        radial-gradient(circle at center, #213a63 0%, #12223f 100%);
       overflow: hidden;
     }
 
     .drum {
       position: absolute;
-      width: 110px;
-      height: 110px;
+      width: 118px;
+      height: 118px;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
       border-radius: 50%;
       background:
         conic-gradient(
-          #ff6b6b 0deg,
-          #ffd166 90deg,
-          #7bdff2 180deg,
-          #b388eb 270deg,
-          #ff6b6b 360deg
+          #ff7a7a 0deg,
+          #ffd166 80deg,
+          #7bdff2 160deg,
+          #a78bfa 240deg,
+          #ff7a7a 360deg
         );
-      opacity: 0.9;
-      filter: saturate(1.1);
+      opacity: 0.92;
+      filter: saturate(1.05);
     }
 
     .drum::before {
@@ -147,7 +179,7 @@
       position: absolute;
       inset: 18px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.16);
       backdrop-filter: blur(3px);
     }
 
@@ -165,7 +197,7 @@
     }
 
     .status-box {
-      min-height: 70px;
+      min-height: 74px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -173,7 +205,7 @@
       padding: 14px 18px;
       border-radius: 18px;
       background: rgba(255,255,255,0.06);
-      color: rgba(255,255,255,0.9);
+      color: rgba(255,255,255,0.92);
       line-height: 1.5;
       font-size: 1rem;
     }
@@ -191,7 +223,7 @@
       padding: 12px 18px;
       font-size: 0.98rem;
       cursor: pointer;
-      transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+      transition: transform 0.18s ease, background 0.2s ease, box-shadow 0.2s ease;
     }
 
     button:hover {
@@ -200,14 +232,16 @@
 
     .start-btn {
       background: #7bdff2;
-      color: #12233d;
+      color: #102542;
       font-weight: bold;
+      box-shadow: 0 0 18px rgba(123, 223, 242, 0.18);
     }
 
     .finish-btn {
       background: #ffd166;
-      color: #3b2a00;
+      color: #3a2b02;
       font-weight: bold;
+      box-shadow: 0 0 18px rgba(255, 209, 102, 0.18);
     }
 
     .reset-btn {
@@ -227,19 +261,23 @@
       }
 
       .machine {
-        width: 220px;
-        height: 295px;
+        width: 230px;
+        height: 300px;
       }
 
       .door {
-        width: 150px;
-        height: 150px;
-        top: 118px;
+        width: 155px;
+        height: 155px;
+        top: 116px;
       }
 
       .drum {
         width: 98px;
         height: 98px;
+      }
+
+      h1 {
+        font-size: 1.7rem;
       }
     }
   </style>
@@ -248,12 +286,12 @@
   <div class="app">
     <h1>🧺 Smart Laundry</h1>
     <p class="subtitle">
-      A playful laundry reminder with a little bit of charm.
+      A playful reminder app with a clean design and a friendly message when the wash cycle is done.
     </p>
 
     <div class="machine">
       <div class="machine-top">
-        <div class="display" id="display"></div>
+        <div class="display"></div>
         <div class="knob" id="knob" title="Finish now"></div>
       </div>
 
@@ -275,7 +313,7 @@
     </div>
 
     <div class="footer-note">
-      Demo version: the cycle runs for 8 seconds.
+      Demo version: the wash cycle runs for 8 seconds.
     </div>
   </div>
 
@@ -300,28 +338,26 @@
       isRunning = true;
       drum.classList.add("spinning");
       setStatus("Wash cycle is running...");
-
-      washTimer = setTimeout(() => {
-        finishWash();
-      }, 8000);
+      washTimer = setTimeout(finishWash, 8000);
     }
 
     function finishWash() {
-      if (!isRunning && washTimer === null) {
-        setStatus("Waschgang fertig – wer hilft mit? 🧺✨");
-        return;
+      if (washTimer) {
+        clearTimeout(washTimer);
+        washTimer = null;
       }
 
-      clearTimeout(washTimer);
-      washTimer = null;
       isRunning = false;
       drum.classList.remove("spinning");
       setStatus("Waschgang fertig – wer hilft mit? 🧺✨");
     }
 
     function resetWash() {
-      clearTimeout(washTimer);
-      washTimer = null;
+      if (washTimer) {
+        clearTimeout(washTimer);
+        washTimer = null;
+      }
+
       isRunning = false;
       drum.classList.remove("spinning");
       setStatus("Ready to start the wash cycle.");
