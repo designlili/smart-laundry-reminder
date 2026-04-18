@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="header.png" style="width:100%; border-radius:16px;" />
+  <img src="header.png" style="width:100%; border-radius:12px;" />
 </p>
 
 # 🧺 Smart Laundry Reminder
