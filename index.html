@@ -26,7 +26,7 @@
 
     .app {
       width: 100%;
-      max-width: 520px;
+      max-width: 560px;
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid rgba(255, 255, 255, 0.10);
       border-radius: 30px;
@@ -49,8 +49,8 @@
     }
 
     .machine {
-      width: 270px;
-      height: 340px;
+      width: 290px;
+      height: 360px;
       margin: 0 auto 24px;
       border-radius: 30px;
       background: linear-gradient(180deg, #eef4ff 0%, #cfdcf2 100%);
@@ -61,7 +61,7 @@
     }
 
     .machine-top {
-      height: 76px;
+      height: 82px;
       border-radius: 30px 30px 0 0;
       background: linear-gradient(180deg, #f8fbff 0%, #dce7f7 100%);
       border-bottom: 1px solid rgba(0,0,0,0.05);
@@ -69,9 +69,9 @@
     }
 
     .display {
-      width: 76px;
-      height: 24px;
-      border-radius: 9px;
+      width: 96px;
+      height: 32px;
+      border-radius: 10px;
       background: linear-gradient(180deg, #0f213d 0%, #1f3d68 100%);
       position: absolute;
       top: 24px;
@@ -79,24 +79,18 @@
       box-shadow:
         inset 0 0 10px rgba(125, 255, 255, 0.18),
         0 0 12px rgba(80, 180, 255, 0.12);
-    }
-
-    .display::after {
-      content: "ON";
-      position: absolute;
-      inset: 0;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #95f0ff;
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
       font-weight: bold;
     }
 
     .knob {
-      width: 50px;
-      height: 50px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
       background: radial-gradient(circle at 35% 35%, #ffffff 0%, #d2dceb 60%, #aab6c9 100%);
       position: absolute;
@@ -119,7 +113,7 @@
     .knob::after {
       content: "";
       width: 3px;
-      height: 14px;
+      height: 15px;
       border-radius: 2px;
       background: #70839b;
       position: absolute;
@@ -129,8 +123,8 @@
     }
 
     .door {
-      width: 185px;
-      height: 185px;
+      width: 195px;
+      height: 195px;
       border-radius: 50%;
       position: absolute;
       left: 50%;
@@ -149,42 +143,116 @@
       inset: 10px;
       border-radius: 50%;
       background:
-        radial-gradient(circle at 28% 24%, rgba(255,255,255,0.32) 0%, rgba(255,255,255,0.05) 26%, transparent 28%),
-        radial-gradient(circle at center, #213a63 0%, #12223f 100%);
+        radial-gradient(circle at 28% 24%, rgba(255,255,255,0.34) 0%, rgba(255,255,255,0.05) 26%, transparent 28%),
+        radial-gradient(circle at center, #20355d 0%, #132442 100%);
       overflow: hidden;
+    }
+
+    .water {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 75%, rgba(123, 223, 242, 0.20) 0%, rgba(123, 223, 242, 0.08) 35%, transparent 60%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .foam {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      box-shadow: inset 0 0 8px rgba(255,255,255,0.18);
     }
 
     .drum {
       position: absolute;
-      width: 118px;
-      height: 118px;
+      width: 124px;
+      height: 124px;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
       border-radius: 50%;
       background:
-        conic-gradient(
-          #ff7a7a 0deg,
-          #ffd166 80deg,
-          #7bdff2 160deg,
-          #a78bfa 240deg,
-          #ff7a7a 360deg
-        );
-      opacity: 0.92;
+        radial-gradient(circle at center, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 55%, transparent 56%),
+        radial-gradient(circle at center, #294a78 0%, #162949 100%);
+      border: 2px solid rgba(255,255,255,0.06);
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .drum.spinning {
+      animation: spin 1.1s linear infinite;
+    }
+
+    .laundry {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.88;
       filter: saturate(1.05);
     }
 
-    .drum::before {
-      content: "";
-      position: absolute;
-      inset: 18px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.16);
-      backdrop-filter: blur(3px);
+    .laundry.one {
+      width: 52px;
+      height: 52px;
+      background: radial-gradient(circle at 30% 30%, #ff7a7a 0%, #ff4f74 100%);
+      top: 16px;
+      left: 20px;
     }
 
-    .spinning {
-      animation: spin 1.1s linear infinite;
+    .laundry.two {
+      width: 44px;
+      height: 44px;
+      background: radial-gradient(circle at 30% 30%, #ffd166 0%, #ffb347 100%);
+      bottom: 20px;
+      left: 28px;
+    }
+
+    .laundry.three {
+      width: 46px;
+      height: 46px;
+      background: radial-gradient(circle at 30% 30%, #7bdff2 0%, #59b8ff 100%);
+      top: 34px;
+      right: 18px;
+    }
+
+    .laundry.four {
+      width: 38px;
+      height: 38px;
+      background: radial-gradient(circle at 30% 30%, #b388eb 0%, #8a63d2 100%);
+      bottom: 24px;
+      right: 24px;
+    }
+
+    .drum-highlight {
+      position: absolute;
+      inset: 14px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.08);
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .glass-reflection {
+      position: absolute;
+      width: 70px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.02));
+      top: 10px;
+      left: 18px;
+      transform: rotate(-18deg);
+      filter: blur(1px);
+      z-index: 5;
+      pointer-events: none;
     }
 
     @keyframes spin {
@@ -261,19 +329,19 @@
       }
 
       .machine {
-        width: 230px;
-        height: 300px;
+        width: 236px;
+        height: 308px;
       }
 
       .door {
-        width: 155px;
-        height: 155px;
+        width: 162px;
+        height: 162px;
         top: 116px;
       }
 
       .drum {
-        width: 98px;
-        height: 98px;
+        width: 104px;
+        height: 104px;
       }
 
       h1 {
@@ -286,18 +354,35 @@
   <div class="app">
     <h1>🧺 Smart Laundry</h1>
     <p class="subtitle">
-      A playful reminder app with a clean design and a friendly message when the wash cycle is done.
+      A playful reminder app with a clean design, a realistic washing machine and a friendly message when the cycle is done.
     </p>
 
     <div class="machine">
       <div class="machine-top">
-        <div class="display"></div>
+        <div class="display" id="display">READY</div>
         <div class="knob" id="knob" title="Finish now"></div>
       </div>
 
       <div class="door">
         <div class="glass">
-          <div class="drum" id="drum"></div>
+          <div class="water"></div>
+
+          <div class="drum" id="drum">
+            <div class="laundry one"></div>
+            <div class="laundry two"></div>
+            <div class="laundry three"></div>
+            <div class="laundry four"></div>
+          </div>
+
+          <div class="foam">
+            <div class="bubble" style="width:16px;height:16px;left:28px;top:34px;"></div>
+            <div class="bubble" style="width:10px;height:10px;left:56px;top:24px;"></div>
+            <div class="bubble" style="width:14px;height:14px;right:32px;top:36px;"></div>
+            <div class="bubble" style="width:12px;height:12px;right:58px;top:22px;"></div>
+          </div>
+
+          <div class="drum-highlight"></div>
+          <div class="glass-reflection"></div>
         </div>
       </div>
     </div>
@@ -320,25 +405,73 @@
   <script>
     const drum = document.getElementById("drum");
     const statusBox = document.getElementById("status");
+    const display = document.getElementById("display");
     const startBtn = document.getElementById("startBtn");
     const finishBtn = document.getElementById("finishBtn");
     const resetBtn = document.getElementById("resetBtn");
     const knob = document.getElementById("knob");
 
     let washTimer = null;
+    let countdownTimer = null;
     let isRunning = false;
+    let secondsLeft = 8;
 
     function setStatus(message) {
       statusBox.innerText = message;
+    }
+
+    function updateDisplay(text) {
+      display.innerText = text;
+    }
+
+    function beep(duration = 180, frequency = 880, volume = 0.05) {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return;
+
+      const audioCtx = new AudioContextClass();
+      const oscillator = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
+
+      oscillator.type = "sine";
+      oscillator.frequency.value = frequency;
+      gainNode.gain.value = volume;
+
+      oscillator.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+
+      oscillator.start();
+
+      setTimeout(() => {
+        oscillator.stop();
+        audioCtx.close();
+      }, duration);
+    }
+
+    function finishSound() {
+      beep(140, 900, 0.05);
+      setTimeout(() => beep(180, 1200, 0.05), 180);
     }
 
     function startWash() {
       if (isRunning) return;
 
       isRunning = true;
+      secondsLeft = 8;
+
       drum.classList.add("spinning");
       setStatus("Wash cycle is running...");
-      washTimer = setTimeout(finishWash, 8000);
+      updateDisplay(`${secondsLeft}s`);
+
+      countdownTimer = setInterval(() => {
+        secondsLeft -= 1;
+        if (secondsLeft > 0) {
+          updateDisplay(`${secondsLeft}s`);
+        }
+      }, 1000);
+
+      washTimer = setTimeout(() => {
+        finishWash();
+      }, 8000);
     }
 
     function finishWash() {
@@ -347,9 +480,16 @@
         washTimer = null;
       }
 
+      if (countdownTimer) {
+        clearInterval(countdownTimer);
+        countdownTimer = null;
+      }
+
       isRunning = false;
       drum.classList.remove("spinning");
+      updateDisplay("DONE");
       setStatus("Waschgang fertig – wer hilft mit? 🧺✨");
+      finishSound();
     }
 
     function resetWash() {
@@ -358,8 +498,15 @@
         washTimer = null;
       }
 
+      if (countdownTimer) {
+        clearInterval(countdownTimer);
+        countdownTimer = null;
+      }
+
       isRunning = false;
+      secondsLeft = 8;
       drum.classList.remove("spinning");
+      updateDisplay("READY");
       setStatus("Ready to start the wash cycle.");
     }
 
