@@ -1,6 +1,7 @@
 <p align="center">
-  <img src="header.png" style="width:100%; border-radius:12px;" />
+  <img src="header.png" style="width:100%; border-radius:08px;" />
 </p>
+
 
 # 🧺 Smart Laundry Reminder
 
@@ -13,7 +14,8 @@ A playful interactive laundry reminder built with HTML, CSS and JavaScript.
 ---
 
 ## ✨ About
-This is a **small, slightly ironic fun project** that turns a simple everyday task into an interactive experience.  
+This is a **small, slightly ironic fun project** –  
+not meant to be taken too seriously 😉
 
 It combines a realistic UI with a touch of humor and personality.
 
