@@ -24,9 +24,15 @@
       padding: 24px;
     }
 
+    .page {
+      width: 100%;
+      max-width: 760px;
+    }
+
     .app {
       width: 100%;
       max-width: 560px;
+      margin: 0 auto;
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid rgba(255, 255, 255, 0.10);
       border-radius: 30px;
@@ -323,6 +329,17 @@
       color: rgba(255,255,255,0.6);
     }
 
+    .header-preview {
+      margin: 28px auto 0;
+      max-width: 560px;
+    }
+
+    .header-preview img {
+      width: 100%;
+      border-radius: 16px;
+      display: block;
+    }
+
     @media (max-width: 520px) {
       .app {
         padding: 22px 18px;
@@ -351,57 +368,210 @@
   </style>
 </head>
 <body>
-  <div class="app">
-    <h1>🧺 Smart Laundry</h1>
-    <p class="subtitle">
-      A playful reminder app with a clean design, a realistic washing machine and a friendly message when the cycle is done.
-    </p>
+  <div class="page">
+    <div class="app">
+      <h1>🧺 Smart Laundry</h1>
+      <p class="subtitle">
+        A playful reminder app with a clean design, a realistic washing machine and a friendly message when the cycle is done.
+      </p>
 
-    <div class="machine">
-      <div class="machine-top">
-        <div class="display" id="display">READY</div>
-        <div class="knob" id="knob" title="Finish now"></div>
-      </div>
+      <div class="machine">
+        <div class="machine-top">
+          <div class="display" id="display">READY</div>
+          <div class="knob" id="knob" title="Finish now"></div>
+        </div>
 
-      <div class="door">
-        <div class="glass">
-          <div class="water"></div>
+        <div class="door">
+          <div class="glass">
+            <div class="water"></div>
 
-          <div class="drum" id="drum">
-            <div class="laundry one"></div>
-            <div class="laundry two"></div>
-            <div class="laundry three"></div>
-            <div class="laundry four"></div>
+            <div class="drum" id="drum">
+              <div class="laundry one"></div>
+              <div class="laundry two"></div>
+              <div class="laundry three"></div>
+              <div class="laundry four"></div>
+            </div>
+
+            <div class="foam">
+              <div class="bubble" style="width:16px;height:16px;left:28px;top:34px;"></div>
+              <div class="bubble" style="width:10px;height:10px;left:56px;top:24px;"></div>
+              <div class="bubble" style="width:14px;height:14px;right:32px;top:36px;"></div>
+              <div class="bubble" style="width:12px;height:12px;right:58px;top:22px;"></div>
+            </div>
+
+            <div class="drum-highlight"></div>
+            <div class="glass-reflection"></div>
           </div>
-
-          <div class="foam">
-            <div class="bubble" style="width:16px;height:16px;left:28px;top:34px;"></div>
-            <div class="bubble" style="width:10px;height:10px;left:56px;top:24px;"></div>
-            <div class="bubble" style="width:14px;height:14px;right:32px;top:36px;"></div>
-            <div class="bubble" style="width:12px;height:12px;right:58px;top:22px;"></div>
-          </div>
-
-          <div class="drum-highlight"></div>
-          <div class="glass-reflection"></div>
         </div>
       </div>
+
+      <div class="status-box" id="status">
+        Ready to start the wash cycle.
+      </div>
+
+      <div class="buttons">
+        <button class="start-btn" id="startBtn">Start wash</button>
+        <button class="finish-btn" id="finishBtn">Finish now</button>
+        <button class="reset-btn" id="resetBtn">Reset</button>
+      </div>
+
+      <div class="footer-note">
+        Demo version: the wash cycle runs for 8 seconds.
+      </div>
     </div>
 
-    <div class="status-box" id="status">
-      Ready to start the wash cycle.
-    </div>
-
-    <div class="buttons">
-      <button class="start-btn" id="startBtn">Start wash</button>
-      <button class="finish-btn" id="finishBtn">Finish now</button>
-      <button class="reset-btn" id="resetBtn">Reset</button>
-    </div>
-
-    <div class="footer-note">
-      Demo version: the wash cycle runs for 8 seconds.
+    <div class="header-preview">
+      <img src="header.png" alt="Project preview" />
     </div>
   </div>
 
-  <p align="center">
-  <img src="header.png" style="width:100%; border-radius:16px;" />
-</p>
+  <script>
+    const drum = document.getElementById("drum");
+    const statusBox = document.getElementById("status");
+    const display = document.getElementById("display");
+    const startBtn = document.getElementById("startBtn");
+    const finishBtn = document.getElementById("finishBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const knob = document.getElementById("knob");
+
+    let washTimer = null;
+    let countdownTimer = null;
+    let isRunning = false;
+    let secondsLeft = 8;
+
+    function setStatus(message) {
+      statusBox.innerText = message;
+    }
+
+    function updateDisplay(text) {
+      display.innerText = text;
+    }
+
+    function beep(duration = 180, frequency = 880, volume = 0.05) {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return;
+
+      const audioCtx = new AudioContextClass();
+      const oscillator = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
+
+      oscillator.type = "sine";
+      oscillator.frequency.value = frequency;
+      gainNode.gain.value = volume;
+
+      oscillator.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+
+      oscillator.start();
+
+      setTimeout(() => {
+        oscillator.stop();
+        audioCtx.close();
+      }, duration);
+    }
+
+    function finishSound() {
+      beep(140, 900, 0.05);
+      setTimeout(() => beep(180, 1200, 0.05), 180);
+    }
+
+    function speakMessage(text) {
+      const synth = window.speechSynthesis;
+      if (!synth) return;
+
+      synth.cancel();
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "de-DE";
+      utterance.pitch = 1.15;
+      utterance.rate = 0.9;
+      utterance.volume = 1;
+
+      const voices = synth.getVoices();
+      const germanVoice =
+        voices.find(v => v.lang === "de-DE" && /female|anna|katja|helena|petra|siri/i.test(v.name)) ||
+        voices.find(v => v.lang === "de-DE") ||
+        voices.find(v => v.lang && v.lang.startsWith("de"));
+
+      if (germanVoice) {
+        utterance.voice = germanVoice;
+      }
+
+      synth.speak(utterance);
+    }
+
+    function startWash() {
+      if (isRunning) return;
+
+      isRunning = true;
+      secondsLeft = 8;
+
+      drum.classList.add("spinning");
+      setStatus("Wash cycle is running...");
+      updateDisplay(`${secondsLeft}s`);
+
+      countdownTimer = setInterval(() => {
+        secondsLeft -= 1;
+        if (secondsLeft > 0) {
+          updateDisplay(`${secondsLeft}s`);
+        }
+      }, 1000);
+
+      washTimer = setTimeout(() => {
+        finishWash();
+      }, 8000);
+    }
+
+    function finishWash() {
+      if (washTimer) {
+        clearTimeout(washTimer);
+        washTimer = null;
+      }
+
+      if (countdownTimer) {
+        clearInterval(countdownTimer);
+        countdownTimer = null;
+      }
+
+      isRunning = false;
+      drum.classList.remove("spinning");
+
+      updateDisplay("DONE");
+      setStatus("Waschgang fertig – wer hilft mit? 🧺✨");
+
+      finishSound();
+      setTimeout(() => {
+        speakMessage("Waschgang fertig. Wer hilft mit?");
+      }, 320);
+    }
+
+    function resetWash() {
+      if (washTimer) {
+        clearTimeout(washTimer);
+        washTimer = null;
+      }
+
+      if (countdownTimer) {
+        clearInterval(countdownTimer);
+        countdownTimer = null;
+      }
+
+      window.speechSynthesis.cancel();
+
+      isRunning = false;
+      secondsLeft = 8;
+
+      drum.classList.remove("spinning");
+      updateDisplay("READY");
+      setStatus("Ready to start the wash cycle.");
+    }
+
+    startBtn.addEventListener("click", startWash);
+    finishBtn.addEventListener("click", finishWash);
+    resetBtn.addEventListener("click", resetWash);
+    knob.addEventListener("click", finishWash);
+
+    window.speechSynthesis.onvoiceschanged = () => {};
+  </script>
+</body>
+</html>
