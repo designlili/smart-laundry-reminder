@@ -24,15 +24,9 @@
       padding: 24px;
     }
 
-    .page {
-      width: 100%;
-      max-width: 760px;
-    }
-
     .app {
       width: 100%;
       max-width: 580px;
-      margin: 0 auto;
       background: rgba(255, 255, 255, 0.07);
       border: 1px solid rgba(255, 255, 255, 0.10);
       border-radius: 34px;
@@ -45,17 +39,15 @@
     }
 
     h1 {
-      font-size: 2.05rem;
+      font-size: 2rem;
       margin-bottom: 10px;
       color: #f7faff;
-      letter-spacing: 0.01em;
     }
 
     .subtitle {
       color: rgba(255,255,255,0.76);
       margin-bottom: 28px;
       line-height: 1.55;
-      font-size: 1rem;
     }
 
     .machine {
@@ -63,8 +55,7 @@
       height: 390px;
       margin: 0 auto 24px;
       border-radius: 34px;
-      background:
-        linear-gradient(180deg, #f4f8ff 0%, #d5e0f1 50%, #c8d4e7 100%);
+      background: linear-gradient(180deg, #f4f8ff 0%, #d5e0f1 50%, #c8d4e7 100%);
       position: relative;
       box-shadow:
         inset 0 2px 12px rgba(255,255,255,0.55),
@@ -136,23 +127,6 @@
       top: 8px;
       left: 50%;
       transform: translateX(-50%);
-    }
-
-    .mini-buttons {
-      position: absolute;
-      top: 32px;
-      left: 150px;
-      display: flex;
-      gap: 6px;
-    }
-
-    .mini-buttons span {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      display: inline-block;
-      background: #bfcadd;
-      box-shadow: inset 0 1px 1px rgba(255,255,255,0.35);
     }
 
     .door {
@@ -393,61 +367,54 @@
   </style>
 </head>
 <body>
-  <div class="page">
-    <div class="app">
-      <h1>🧺 Smart Laundry</h1>
-      <p class="subtitle">
-        A playful reminder app with a cleaner, more realistic washing machine and a spoken reminder when the cycle is done.
-      </p>
+  <div class="app">
+    <h1>🧺 Smart Laundry</h1>
+    <p class="subtitle">
+      A playful reminder app with a cleaner, more realistic washing machine and a spoken reminder when the cycle is done.
+    </p>
 
-      <div class="machine">
-        <div class="machine-top">
-          <div class="display" id="display">READY</div>
-          <div class="mini-buttons">
-            <span></span>
-            <span></span>
-            <span></span>
+    <div class="machine">
+      <div class="machine-top">
+        <div class="display" id="display">READY</div>
+        <div class="knob" id="knob" title="Finish now"></div>
+      </div>
+
+      <div class="door">
+        <div class="glass">
+          <div class="water"></div>
+
+          <div class="drum" id="drum">
+            <div class="laundry one"></div>
+            <div class="laundry two"></div>
+            <div class="laundry three"></div>
+            <div class="laundry four"></div>
           </div>
-          <div class="knob" id="knob" title="Finish now"></div>
-        </div>
 
-        <div class="door">
-          <div class="glass">
-            <div class="water"></div>
-
-            <div class="drum" id="drum">
-              <div class="laundry one"></div>
-              <div class="laundry two"></div>
-              <div class="laundry three"></div>
-              <div class="laundry four"></div>
-            </div>
-
-            <div class="foam">
-              <div class="bubble" style="width:16px;height:16px;left:30px;top:36px;"></div>
-              <div class="bubble" style="width:10px;height:10px;left:60px;top:24px;"></div>
-              <div class="bubble" style="width:14px;height:14px;right:34px;top:38px;"></div>
-              <div class="bubble" style="width:12px;height:12px;right:62px;top:24px;"></div>
-            </div>
-
-            <div class="drum-highlight"></div>
-            <div class="glass-reflection"></div>
+          <div class="foam">
+            <div class="bubble" style="width:16px;height:16px;left:30px;top:36px;"></div>
+            <div class="bubble" style="width:10px;height:10px;left:60px;top:24px;"></div>
+            <div class="bubble" style="width:14px;height:14px;right:34px;top:38px;"></div>
+            <div class="bubble" style="width:12px;height:12px;right:62px;top:24px;"></div>
           </div>
+
+          <div class="drum-highlight"></div>
+          <div class="glass-reflection"></div>
         </div>
       </div>
+    </div>
 
-      <div class="status-box" id="status">
-        Ready to start the wash cycle.
-      </div>
+    <div class="status-box" id="status">
+      Ready to start the wash cycle.
+    </div>
 
-      <div class="buttons">
-        <button class="start-btn" id="startBtn">Start wash</button>
-        <button class="finish-btn" id="finishBtn">Finish now</button>
-        <button class="reset-btn" id="resetBtn">Reset</button>
-      </div>
+    <div class="buttons">
+      <button class="start-btn" id="startBtn">Start wash</button>
+      <button class="finish-btn" id="finishBtn">Finish now</button>
+      <button class="reset-btn" id="resetBtn">Reset</button>
+    </div>
 
-      <div class="footer-note">
-        Demo version: the wash cycle runs for 8 seconds.
-      </div>
+    <div class="footer-note">
+      Demo version: the wash cycle runs for 8 seconds.
     </div>
   </div>
 
@@ -589,7 +556,7 @@
       drum.classList.remove("spinning");
 
       updateDisplay("DONE");
-      setStatus("Waschgang fertig – Männer müssen auch mitmachen. 🧺✨");
+      setStatus("Waschgang fertig – Männer müssen auch mitmachen! 🧺✨");
 
       finishSound();
 
@@ -639,3 +606,4 @@
   </script>
 </body>
 </html>
+
